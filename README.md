@@ -1,25 +1,32 @@
-# Timer for Websites That Steal Your Time
+# Таймер для веб сайтов, которые крадут ваше время
 
-This project helps to control time was spent on sites. It requires special extension for Chrome browser.
+Скрипт помогает контролировать время нахождения на сайте. Требуется специальное расширение для Хрома.
 
-# Installing
+После истечения таймера, каждые 30 секунд показывается сообщение о том, что пора работать.
 
-Install extension for Chrome browser [Custom JavaScript for websites](https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija).
+## Как установить
 
-Open configuration of [cjs](https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija) browser extension on the site you want to controll. Click on the link "your own external scripts", add path [TODO в качестве production хостинга файла с JavaScript подойдет GitHub - у каждого файла в репозитории есть свой URL, и этим можно воспользоваться]. Don`t forget to press "enable cjs for this host" to enable custom JS.
+Установить расширение для Хрома [Custom JavaScript for websites](https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija).
 
-[TODO describe what will happen after that]
+Открыть расширение [cjs](https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija) на сайте, который хотите контроллировать. Нажмите на ссылку "ваши собственные внешние скрипты", добавьте путь. Например, https://github.com/Safintim/34_timemachine/blob/master/index.js
 
-For faster development you can use JS code hosted on localhost. Simple web server can be used for that, run:
+Не забудьте нажать "Включить cjs для этого хоста", чтобы включить пользовательский JS.
 
-```bash
 
+Выглядит вот так:
+
+![alt text](http://ipic.su/img/img7/fs/timemachine.1564308380.png)
+
+
+Для более быстрой разработки вы можете использовать JS-код, размещенный на локальном хосте. Простой веб-сервер может быть использован для этого, запустите:
+
+```sh
 python3 -m http.server
 ```
 
-Add path `http://localhost:8000/index.js` to [cjs](https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija) browser extension. Done.
+Добавьте путь `http://localhost:8000/index.js` в расширение [cjs](https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija)
 
 
-# Project Goals
+## Цели проекта
 
-The code is written for educational purposes. Training course for web-developers - [DEVMAN.org](https://devman.org)
+Код создан в учебных целях. В рамках учебного курса по веб-разработке - [DEVMAN.org](https://devman.org)
