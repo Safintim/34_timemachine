@@ -1,5 +1,5 @@
-var TIMEOUT_IN_SECS = 3 * 60
-var TEMPLATE = '<h1><span class="js-timer-minutes">00</span>:<span class="js-timer-seconds">00</span></h1>'
+var TIMEOUT_IN_SECS = 10
+var TEMPLATE = '<h1 style="display:block; position: fixed; top: 12px; left: 8px; line-height: 16px; border-radius: 10px; background-color: steelblue; color: cornsilk; padding: 14px; opacity: 0.9; z-index: 1000; font-family: monospace;"><span class="js-timer-minutes">00</span>:<span class="js-timer-seconds">00</span></h1>'
 
 function padZero(number){
   return ("00" + String(number)).slice(-2);
@@ -56,7 +56,6 @@ class TimerWidget{
     // adds HTML tag to current page
     this.timerContainer = document.createElement('div')
 
-    this.timerContainer.setAttribute("style", "height: 100px;")
     this.timerContainer.innerHTML = TEMPLATE
 
     rootTag.insertBefore(this.timerContainer, rootTag.firstChild)
@@ -109,9 +108,25 @@ function main(){
   handleVisibilityChange()
 }
 
-if (document.readyState === "complete" || document.readyState === "loaded") {
+function getMotivationAlert(){
+  var motivationsMessages = [
+    'Бро, пора сеньёром становиться, давай за работу',
+    'Кажется, новый ноут ты не хочешь..',
+    'Божественный код сам не напишется',
+  ]
+  alert(motivationsMessages[Math.floor(Math.random() * motivationsMessages.length)])
+}
+
+function setIntervalEvery30Seconds() {
+  setInterval(getMotivationAlert, 3000)
+}
+
+
+if (document.readyState !== "loading") {
   main();
+  setTimeout(setIntervalEvery30Seconds, TIMEOUT_IN_SECS * 1000)
 } else {
   // initialize timer when page ready for presentation
   window.addEventListener('DOMContentLoaded', main);
 }
+
