@@ -1,4 +1,5 @@
-var TIMEOUT_IN_SECS = 10
+var TIMEOUT_IN_SECS = 30 * 6
+var INTERVAL_NOTIFICATIONS_IN_SECS = 30
 var TEMPLATE = '<h1 style="display:block; position: fixed; top: 12px; left: 8px; line-height: 16px; border-radius: 10px; background-color: steelblue; color: cornsilk; padding: 14px; opacity: 0.9; z-index: 1000; font-family: monospace;"><span class="js-timer-minutes">00</span>:<span class="js-timer-seconds">00</span></h1>'
 
 function padZero(number){
@@ -118,7 +119,7 @@ function getMotivationAlert(){
 }
 
 function setIntervalEvery30Seconds() {
-  setInterval(getMotivationAlert, 3000)
+  setInterval(getMotivationAlert, INTERVAL_NOTIFICATIONS_IN_SECS * 1000)
 }
 
 
