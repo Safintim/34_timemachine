@@ -88,8 +88,23 @@ function main(){
 
   timerWiget.mount(document.body)
 
+  function getMotivationAlert(){
+    var motivationsMessages = [
+      'Бро, пора сеньёром становиться, давай за работу',
+      'Кажется, новый ноут ты не хочешь..',
+      'Божественный код сам не напишется',
+    ]
+    alert(motivationsMessages[Math.floor(Math.random() * motivationsMessages.length)])
+  }
+
   function handleIntervalTick(){
     var secsLeft = timer.calculateSecsLeft()
+    if (secsLeft === 0) {
+      timer.stop()
+      clearInterval(intervalId)
+      intervalId = null
+      setInterval(getMotivationAlert, INTERVAL_NOTIFICATIONS_IN_SECS * 1000)
+    }
     timerWiget.update(secsLeft)
   }
 
@@ -109,23 +124,8 @@ function main(){
   handleVisibilityChange()
 }
 
-function getMotivationAlert(){
-  var motivationsMessages = [
-    'Бро, пора сеньёром становиться, давай за работу',
-    'Кажется, новый ноут ты не хочешь..',
-    'Божественный код сам не напишется',
-  ]
-  alert(motivationsMessages[Math.floor(Math.random() * motivationsMessages.length)])
-}
-
-function setIntervalEvery30Seconds() {
-  setInterval(getMotivationAlert, INTERVAL_NOTIFICATIONS_IN_SECS * 1000)
-}
-
-
 if (document.readyState !== "loading") {
   main();
-  setTimeout(setIntervalEvery30Seconds, TIMEOUT_IN_SECS * 1000)
 } else {
   // initialize timer when page ready for presentation
   window.addEventListener('DOMContentLoaded', main);
