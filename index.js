@@ -85,6 +85,7 @@ function main(){
   var timer = new Timer(TIMEOUT_IN_SECS)
   var timerWiget = new TimerWidget()
   var intervalId = null
+  var isNewTimer = false
 
   timerWiget.mount(document.body)
 
@@ -99,13 +100,18 @@ function main(){
 
   function handleIntervalTick(){
     var secsLeft = timer.calculateSecsLeft()
-    if (secsLeft === 0) {
-      timer.stop()
-      clearInterval(intervalId)
-      intervalId = null
-      setInterval(getMotivationAlert, INTERVAL_NOTIFICATIONS_IN_SECS * 1000)
+
+    if (!isNewTimer){
+      timerWiget.update(secsLeft)
     }
-    timerWiget.update(secsLeft)
+    if (secsLeft === 0) {
+      if (isNewTimer) {
+        getMotivationAlert()
+      }
+      timer = new Timer(INTERVAL_NOTIFICATIONS_IN_SECS)
+      timer.start()
+      isNewTimer = true
+    }
   }
 
   function handleVisibilityChange(){
